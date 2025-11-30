@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dragon AI Admin</title>
+</head>
+<body style="background:#000;color:#fff;padding:20px;font-family:sans-serif">
+  <h2>🔥 Rồng Máy AI — Trang Admin</h2>
+
+  <input id="token" placeholder="Nhập admin token..." type="password"/>
+  <button onclick="loadLogs()">Xem log chat</button>
+  <button onclick="loadNews()">Lấy tin tức</button>
+
+  <h3>📰 Tin tức</h3>
+  <div id="news"></div>
+
+  <h3>📜 Log chat</h3>
+  <pre id="logs"></pre>
+
+<script>
+const BASE = "";  // nếu host chung domain thì để trống, nếu không thì điền domain backend Render của m
+
+async function loadLogs(){
+  const token = document.getElementById("token").value;
+  const res = await fetch(BASE + "/admin/logs", { headers: { "X-Admin-Token": token }});
+  const j = await res.json();
+  document.getElementById("logs").innerText = JSON.stringify(j, null, 2);
+}
+
+async function loadNews(){
+  const res = await fetch(BASE + "/news?limit=20");
+  const j = await res.json();
+  document.getElementById("news").innerText = JSON.stringify(j, null, 2);
+}
+</script>
+
+</body>
+</html>
