@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+transformers
+torch
+sentencepiece
+accelerate
+bitsandbytes
+requests
+feedparser
+beautifulsoup4
+bs4
